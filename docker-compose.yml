@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: intern-app
+    build: .
+    command: /bin/bash -l -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+  db:
+    container_name: intern-db
+    image: postgres:15.3-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+volumes:
+  db-data:
