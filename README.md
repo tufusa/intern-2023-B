@@ -52,35 +52,41 @@ $ docker-compose up
 ### ローカル環境で動かす場合
 
 このアプリケーションを動かす場合は、まずはリポジトリを手元にクローンしてください。
-その後、次のコマンドで必要になる RubyGems をインストールします。
+その後、次のコマンドで必要になるライブラリをインストールします。
+
+```
+$ sudo apt install sqlite3 libsqlite3-dev
+```
+
+次に以下のコマンドで必要になる RubyGems をインストールします。
 
 ```
 $ gem install bundler -v 2.3.14
-$ bundle install
+$ bundle install --without production
 ```
 
 データベースへのマイグレーションを実行します。
 
 ```
-$ rails db:migrate
+$ bin/rails db:migrate
 ```
 
 最後に、テストを実行してうまく動いているかどうか確認してください。
 
 ```
-$ rails test
+$ bin/rails test
 ```
 
 テストが無事にパスしたら、Railsサーバーを立ち上げる準備が整っているはずです。
 
 ```
-$ rails server
+$ bin/rails server
 ```
 
 以下でデータベースへ初期データを投入することができます。
 
 ```
-$ rails db:seed
+$ bin/rails db:seed
 ```
 
 ### 共通
