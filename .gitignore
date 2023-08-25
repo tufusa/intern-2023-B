@@ -6,3 +6,6 @@ vendor/cache/*
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore sqlite3 db files.
+db/*.sqlite3*
