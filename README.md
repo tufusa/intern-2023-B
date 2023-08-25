@@ -15,9 +15,7 @@
 
 ### Docker環境で動かす場合
 
-データベースの設定ファイルをDocker用のものに置き換えます。
-
-TODO: diffが出ないようにする
+データベースの設定ファイルとしてDocker環境用のものを配置します。
 
 ```
 $ cp config/database.docker.yml config/database.yml
@@ -63,6 +61,12 @@ $ sudo apt install sqlite3 libsqlite3-dev
 ```
 $ gem install bundler -v 2.3.14
 $ bundle install --without production
+```
+
+データベースの設定ファイルとしてローカル環境用のものを配置します。
+
+```
+$ cp config/database.local.yml config/database.yml
 ```
 
 データベースへのマイグレーションを実行します。
