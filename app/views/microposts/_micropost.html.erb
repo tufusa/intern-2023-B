@@ -2,7 +2,14 @@
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
-    <%= micropost.content %>
+    <% micropost.content_url_splitted.each do |elem| %><%#
+      %><% case %><%#
+      %><% when elem[:is_url] %><%#
+        %><%= link_to elem[:value], elem[:value] %><%#
+      %><% else %><%#
+        %><%= elem[:value] %><%#
+      %><% end %><%#
+    %><% end %>
     <% if micropost.image.attached? %>
       <%= image_tag micropost.image.variant(:display) %>
     <% end %>
