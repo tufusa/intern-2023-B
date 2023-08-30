@@ -18,4 +18,12 @@ class Micropost < ApplicationRecord
       { value: text, is_url: url?(text) }
     end
   end
+
+  def content_html
+    content_url_splitted.map do |elem|
+      value = elem[:value]
+      is_url = elem[:is_url]
+      is_url ? %(<a href="#{value}">#{value}</a>) : value
+    end.join
+  end
 end
