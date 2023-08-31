@@ -14,7 +14,8 @@ class UsersSignupTest < UsersSignup
       post users_path, params: { user: { name:  "",
                                          email: "user@invalid",
                                          password:              "foo",
-                                         password_confirmation: "bar" } }
+                                         password_confirmation: "bar",
+                                         nickname: '@nickname' } }
     end
     assert_response :unprocessable_entity
     assert_template 'users/new'
@@ -27,7 +28,8 @@ class UsersSignupTest < UsersSignup
       post users_path, params: { user: { name:  "Example User",
                                          email: "user@example.com",
                                          password:              "password",
-                                         password_confirmation: "password" } }
+                                         password_confirmation: "password",
+                                         nickname: '@nickname' } }
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
   end
@@ -40,7 +42,8 @@ class AccountActivationTest < UsersSignup
     post users_path, params: { user: { name:  "Example User",
                                        email: "user@example.com",
                                        password:              "password",
-                                       password_confirmation: "password" } }
+                                       password_confirmation: "password",
+                                       nickname: '@nickname' } }
     @user = assigns(:user)
   end
 

@@ -4,7 +4,8 @@ class UserTest < ActiveSupport::TestCase
 
   def setup
     @user = User.new(name: "Example User", email: "user@example.com",
-                     password: "foobar", password_confirmation: "foobar")
+                     password: "foobar", password_confirmation: "foobar",
+                     nickname: "@nickname")
   end
 
   test "should be valid" do
@@ -21,6 +22,11 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test 'nickname should be present' do
+    @user.nickname = '     '
+    assert_not @user.valid?
+  end
+
   test "name should not be too long" do
     @user.name = "a" * 51
     assert_not @user.valid?
@@ -28,6 +34,11 @@ class UserTest < ActiveSupport::TestCase
 
   test "email should not be too long" do
     @user.email = "a" * 244 + "@example.com"
+    assert_not @user.valid?
+  end
+
+  test 'nickname should not be too long' do
+    @user.nickname = 'a' * 129
     assert_not @user.valid?
   end
 
@@ -49,7 +60,31 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test 'nickname validation should accept valid nickname' do
+    valid_nicknames = %w[@nickname @NICKNAME @NICK_NAME @Nick_Name0123]
+
+    valid_nicknames.each do |valid_nickname|
+      @user.nickname = valid_nickname
+      assert @user.valid?, "#{valid_nickname.inspect} should be valid"
+    end
+  end
+
+  test 'nickname validation should reject invalid nickname' do
+    invalid_nicknames = %w[nickname @@NICKNAME @NICK-NAME @nick.name]
+
+    invalid_nicknames.each do |invalid_nickname|
+      @user.nickname = invalid_nickname
+      assert_not @user.valid?, "#{invalid_nickname.inspect} should be invalid"
+    end
+  end
+
   test "email addresses should be unique" do
+    duplicate_user = @user.dup
+    @user.save
+    assert_not duplicate_user.valid?
+  end
+
+  test 'nickname should be unique' do
     duplicate_user = @user.dup
     @user.save
     assert_not duplicate_user.valid?

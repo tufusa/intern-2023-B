@@ -13,17 +13,18 @@ class Micropost < ApplicationRecord
                       size: { less_than: 5.megabytes,
                               message: 'should be less than 5MB' }
 
-  def content_url_splitted
-    content.split(URL_EXP).map do |text|
-      { value: text, is_url: url?(text) }
+  def content_splitted
+    content.split(LINK_EXP).map do |string|
+      { value: string, is_link: link?(string), to: generate_link_path(string) }
     end
   end
 
   def content_html
-    content_url_splitted.map do |elem|
-      value = elem[:value]
-      is_url = elem[:is_url]
-      is_url ? %(<a href="#{value}">#{value}</a>) : value
+    content_splitted.map do |fragment|
+      value = fragment[:value]
+      is_link = fragment[:is_link]
+      to = fragment[:to]
+      is_link ? %(<a href="#{to}">#{value}</a>) : value
     end.join
   end
 end
