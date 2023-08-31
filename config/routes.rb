@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy] do              #メンバー(member):任意のIDが送られてくるイメージ
     member do                                                               #micropostsというパスにfixedメソッドを作るイメージ？
-      post :fixed
+      post :fix
     end
   end
   resources :relationships,       only: [:create, :destroy]

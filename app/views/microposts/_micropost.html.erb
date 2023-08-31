@@ -21,8 +21,8 @@
     <% if current_user?(micropost.user) %>
       <%= link_to "削除", micropost, data: { "turbo-method": :delete,
                                                turbo_confirm: "You sure?" } %>
-      <% if !micropost.isfixed %>
-      <%= link_to "固定", fixed_micropost_path(micropost.id), data: { "turbo-method": :post,          #deleteなど固定されていないメソッドを追加した場合は、パス(_path)を書く必要あり
+      <% if !micropost.is_fixed %>
+      <%= link_to "固定", fix_micropost_path(micropost.id), data: { "turbo-method": :post,          #deleteなど固定されていないメソッドを追加した場合は、パス(_path)を書く必要あり
                                                turbo_confirm: "You sure?" } %>
       <% end %>
     <% end %>

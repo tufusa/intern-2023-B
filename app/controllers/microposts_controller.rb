@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy, :fixed]
-  before_action :correct_user,   only: [:destroy, :fixed]
+  before_action :logged_in_user, only: [:create, :destroy, :fix]
+  before_action :correct_user,   only: [:destroy, :fix]
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -24,12 +24,12 @@ class MicropostsController < ApplicationController
     end
   end
 
-  def fixed
+  def fix
     Micropost.transaction do
-      Micropost.where(user_id: @micropost.user_id).update_all isfixed: false
-      @micropost.reload.update(isfixed: true)  
+      Micropost.where(user_id: @micropost.user_id).update_all is_fixed: false
+      @micropost.reload.update(is_fixed: true)  
     end
-    @fixed_item = current_user.isfixed_micropost
+    @fixed_item = current_user.get_fixed_micropost
     flash[:success] = "Micropost fixed"
     redirect_to request.fullpath, status: :see_other
   end
