@@ -99,6 +99,11 @@ class User < ApplicationRecord
              .includes(:user, image_attachment: :blob)
   end
 
+  #固定マイクロポストを取得する
+  def get_fixed_micropost
+    Micropost.find_by( user_id: id , is_fixed: true)
+  end
+
   # ユーザーをフォローする
   def follow(other_user)
     following << other_user unless self == other_user
