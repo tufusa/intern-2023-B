@@ -11,8 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
-    @fixed_item = @user.isfixed_micropost
-    p @fixed_item
+    @fixed_item = @user.get_fixed_micropost
   end
 
   def new

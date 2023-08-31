@@ -100,8 +100,8 @@ class User < ApplicationRecord
   end
 
   #固定マイクロポストを取得する
-  def isfixed_micropost
-    Micropost.find_by( user_id: id , isfixed: true)
+  def get_fixed_micropost
+    Micropost.find_by( user_id: id , is_fixed: true)
   end
 
   # ユーザーをフォローする
