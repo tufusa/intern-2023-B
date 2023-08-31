@@ -6,6 +6,8 @@
       turbo_confirm: "You sure?" } %>
       
   <% end %>
+  <% @user = user %>
+  <%= render 'shared/stats' %>
   <p style = "overflow-wrap: break-word;">
     <%= user.introduce %>
   </p>
