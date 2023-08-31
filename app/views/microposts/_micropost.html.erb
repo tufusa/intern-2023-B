@@ -4,12 +4,12 @@
     <%= link_to "#{micropost.user.name}#{micropost.user.nickname}", micropost.user %>
   </span>
   <span class="content">
-    <% micropost.content_url_splitted.each do |elem| %><%#
+    <% micropost.content_splitted.each do |fragment| %><%#
       %><% case %><%#
-      %><% when elem[:is_url] %><%#
-        %><%= link_to elem[:value], elem[:value] %><%#
+      %><% when fragment[:is_link] %><%#
+        %><%= link_to fragment[:value], fragment[:to] %><%#
       %><% else %><%#
-        %><%= elem[:value] %><%#
+        %><%= fragment[:value] %><%#
       %><% end %><%#
     %><% end %>
     <% if micropost.image.attached? %>
