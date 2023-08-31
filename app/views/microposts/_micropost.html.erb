@@ -1,8 +1,17 @@
 <li id="micropost-<%= micropost.id %>">
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
-  <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
+  <span class="user">
+    <%= link_to "#{micropost.user.name}#{micropost.user.nickname}", micropost.user %>
+  </span>
   <span class="content">
-    <%= micropost.content %>
+    <% micropost.content_splitted.each do |fragment| %><%#
+      %><% case %><%#
+      %><% when fragment[:is_link] %><%#
+        %><%= link_to fragment[:value], fragment[:to] %><%#
+      %><% else %><%#
+        %><%= fragment[:value] %><%#
+      %><% end %><%#
+    %><% end %>
     <% if micropost.image.attached? %>
       <%= image_tag micropost.image.variant(:display) %>
     <% end %>

@@ -1,8 +1,12 @@
 <li>
   <%= gravatar_for user, size: 50 %>
-  <%= link_to user.name, user %>
+  <%= link_to "#{user.name}#{user.nickname}", user %>
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, data: { "turbo-method": :delete,
-                                          turbo_confirm: "You sure?" } %>
+      turbo_confirm: "You sure?" } %>
+      
   <% end %>
+  <p style = "overflow-wrap: break-word;">
+    <%= user.introduce %>
+  </p>
 </li>
