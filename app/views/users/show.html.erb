@@ -10,6 +10,10 @@
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
+      <p>自己紹介</p>
+      <p style = "overflow-wrap: break-word;">
+        <%= @user.introduce %>
+      </p>
     </section>
   </aside>
   <div class="col-md-8">
