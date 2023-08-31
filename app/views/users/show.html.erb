@@ -18,7 +18,6 @@
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
-    <h3>固定Micropost</h3>
     <%= render 'shared/fixed' %>
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
