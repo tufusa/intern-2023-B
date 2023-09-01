@@ -4,3 +4,8 @@ about:
     student1: 近藤
     student2: 細木
     student3: 鈴木
+
+
+newpost:
+  limitnum: 10
+  limithour: 48
