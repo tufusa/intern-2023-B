@@ -1,0 +1,11 @@
+<% if @newpost_items.any? %>
+
+  <ol class="microposts">
+    <%= render @newpost_items %>
+  </ol>
+  <%=  @newpost_items%>
+<% else %>
+<ol class="microposts">
+  <p style="color:silver">フォローしているひとの最新の投稿はありません。</p>
+</ol>
+<% end %>
