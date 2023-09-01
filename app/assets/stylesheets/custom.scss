@@ -360,6 +360,19 @@ span.image {
   color: crimson
 }
 
-.hidden_tag{
-  display: none;
+/* serched_users */
+.serched_users {
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	width: 120px;
+	margin: auto;
+	padding: 1rem 4rem;
+	font-weight: bold;
+	border: 1px solid $gray-lighter;
+	color: #27acd9;
+}
+.serched_users:hover {
+	color: #fff;
+	background: #27acd9;
 }
