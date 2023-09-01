@@ -4,4 +4,8 @@
     <%= render @newpost_items %>
   </ol>
   <%=  @newpost_items%>
-<% end %>s
+<% else %>
+<ol class="microposts">
+  <p style="color:silver">フォローしているひとの最新の投稿はありません。</p>
+</ol>
+<% end %>
