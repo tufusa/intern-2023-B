@@ -12,17 +12,14 @@ module MicropostsHelper
     true
   end
 
-  # stringのリンクのパス(`href`)を返す リンクにすべき文字列でなければnilを返す
-  def generate_link_path(string)
+  # stringのリンク(link_toのリンク先オブジェクト)を返す リンクにすべき文字列でなければnilを返す
+  def generate_link(string)
     case string
     when ->(s) { url? s }
-      return string
+      string
     when ->(s) { nickname? s }
-      user_mentioned = get_user_in_following_followers(string)
-      return "/users/#{user_mentioned.id}" if user_mentioned
+      get_user_in_following_followers(string)
     end
-
-    nil
   end
 
   # stringがURLであればtrueを返す
