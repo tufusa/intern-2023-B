@@ -5,17 +5,17 @@
   <%= submit_tag "search", :name => nil, class: "serched_users" %>
 <% end %>
 
-<%= turbo_frame_tag "searched-users-list" do%>
+<div id="searched-users-list">
   <% unless @users.blank? %>
     <%= will_paginate %>
       <ul class="users">
       <%= render @users %>
       </ul>
     <%= will_paginate %>
-  <% else %>
-    <p>検索条件と十分に一致する結果が見つかりません</p>    
+    <% else %>
+      <p>検索条件と十分に一致する結果が見つかりません</p>    
   <% end%>
-<% end %>
+</div>
   
   
 
