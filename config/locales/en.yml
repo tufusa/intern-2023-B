@@ -10,6 +10,7 @@ en:
   account: Account
   profile: Profile
   settings: Settings
+  latest: Latest
 
   follow: Follow
   unfollow: Unfollow
@@ -51,6 +52,9 @@ en:
   create_my_account: "Create my account"
 
   introduction: "Introduction"
+
+  latest_microposts_by_following: "Latest microposts by following accounts"
+  no_latest_microposts: "No latest microposts."
 
 # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/en-US.yml
   activerecord:

@@ -10,6 +10,7 @@ ja:
   account: アカウント
   profile: プロフィール
   settings: 設定
+  latest: 最新
 
   follow: フォローする
   unfollow: フォロー中
@@ -51,6 +52,9 @@ ja:
   create_my_account: アカウントを作成
 
   introduction: 自己紹介
+
+  latest_microposts_by_following: "フォローしている人の最新の投稿"
+  no_latest_microposts: "最新のMicropostはありません。"
 
   # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/ja.yml
   activerecord:
