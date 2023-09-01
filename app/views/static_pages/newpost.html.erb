@@ -1,5 +1,11 @@
 <% if logged_in? %>
-<div class="col-md-8">
-    <h1>フォロー</hi>
-</div>
+<div class="row">
+    
+
+    <div class="col-md-8">
+      <h3>最新のフォロワーの投稿</h3>
+      <%= render 'shared/newfollow' %>
+    </div>
+  </div>
+
 <% end %>
