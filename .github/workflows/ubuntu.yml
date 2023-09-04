@@ -1,0 +1,19 @@
+name: ubuntu
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0.6
+    - name: Install dependencies
+      run: |
+        gem install bundler --no-document
+        bundle install --without production
+    - name: Run test
+      run: rails test
