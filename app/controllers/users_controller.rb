@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
     @fixed_item = @user.get_fixed_micropost
+    @hidden_button = false
   end
 
   def new

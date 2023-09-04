@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :microposts,          only: [:create, :destroy] do              #メンバー(member):任意のIDが送られてくるイメージ
     member do                                                               #micropostsというパスにfixedメソッドを作るイメージ？
       post :fix
+      get  :like_users
     end
   end
   resources :relationships,       only: [:create, :destroy]

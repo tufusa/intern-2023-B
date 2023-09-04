@@ -56,6 +56,10 @@ ja:
   latest_microposts_by_following: "フォローしている人の最新の投稿"
   no_latest_microposts: "最新のMicropostはありません。"
 
+  like_stm: "いいねしたユーザ一覧"
+  like_users: "いいねした人"
+  like_page: "いいねされました"
+
   # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/ja.yml
   activerecord:
     errors:

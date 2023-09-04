@@ -1,0 +1,14 @@
+<% provide(:title, t(:like_users)) %>
+<h1><%= t :like_page %></h1>
+<div class="row">
+  <aside class="col-md-4">
+     <ol class="microposts">
+      <%= render @micropost %>  
+     </ol>
+  </aside>
+  <div class="col-md-8">
+   <ul class="users">
+      <%= render @users %>    
+    </ul>
+  </div>
+</div>

@@ -56,6 +56,10 @@ en:
   latest_microposts_by_following: "Latest microposts by following accounts"
   no_latest_microposts: "No latest microposts."
 
+  like_stm: "Like"
+  like_users: "Like Users"
+  like_page: "Liked Users"
+
 # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/en-US.yml
   activerecord:
     errors:
