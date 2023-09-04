@@ -15,7 +15,7 @@ class Micropost < ApplicationRecord
 
   def content_splitted
     content.split(LINK_EXP).map do |string|
-      { value: string, is_link: link?(string), to: generate_link_path(string) }
+      { value: string, is_link: link?(string), to: generate_link(string) }
     end
   end
 

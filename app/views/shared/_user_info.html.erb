@@ -3,5 +3,5 @@
   <%= current_user.name %><%#
   %><span class="nickname"><%= current_user.nickname %></span>
 </h1>
-<span><%= link_to "マイページ", current_user %></span>
+<span><%= link_to t(:view_my_profile), current_user %></span>
 <span><%= pluralize(current_user.microposts.count, "micropost") %></span>

@@ -1,5 +1,5 @@
 <% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+<h1><%= t :update_your_profile %></h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -24,12 +24,14 @@
       <%= f.label :introduce %>
       <%= f.text_area :introduce,  class: 'form-control' %>
 
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
+      <%= f.submit t(:submit_profile), class: "btn btn-primary" %>
     <% end %>
 
     <div class="gravatar_edit">
       <%= gravatar_for @user %>
-      <a href="https://gravatar.com/emails" target="_blank">change</a>
+      <a href="https://gravatar.com/emails" target="_blank">
+        <%= t :change_gravatar %>
+      </a>
     </div>
   </div>
 </div>

@@ -48,14 +48,14 @@ class UsersController < ApplicationController
   end
 
   def following
-    @title = "フォロー"
+    @title = I18n.t :following
     @user  = User.find(params[:id])
     @users = @user.following.paginate(page: params[:page])
     render 'show_follow', status: :unprocessable_entity
   end
 
   def followers
-    @title = "フォロワー"
+    @title = I18n.t :followers
     @user  = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow', status: :unprocessable_entity
