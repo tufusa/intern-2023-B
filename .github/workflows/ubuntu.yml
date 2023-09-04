@@ -31,6 +31,6 @@ jobs:
       run: |
         mv config/database.local.yml config/database.yml
         bundle exec rails db:migrate RAILS_ENV=test
-        bundle exec rails db:seed
+        bundle exec rails db:seed RAILS_ENV=test
     - name: Run test
       run: bundle exec rails test
