@@ -11,7 +11,12 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_microposts, class_name: "Micropost",
                               through: :likes,
-                              dependent: :destroy
+                              source: :micropost,
+                              dependent: :destroy do
+                                def with_count
+                                  select(:count, arel_table[Arel.star])
+                                end
+                              end
 
   attr_accessor :remember_token, :activation_token, :reset_token
 
@@ -122,6 +127,31 @@ class User < ApplicationRecord
   # 現在のユーザーが他のユーザーをフォローしていればtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # micropostをLikeする
+  def like(micropost)
+    count = like_count micropost
+    if count.zero?
+      liked_microposts << micropost
+    else
+      Like.transaction do
+        likes.find_by(micropost_id: micropost.id)&.update(count: count + 1)
+      end
+    end
+  end
+
+  # このユーザによるmicropostのLike数を返す Likeしていなければ0を返す
+  def like_count(micropost)
+    liked_micropost = liked_microposts.with_count.find_by(id: micropost.id)
+    liked_micropost&.count || 0
+  end
+
+  # micropostのLikeを解除する
+  def delete_like(micropost)
+    Like.transaction do
+      likes.find_by(micropost_id: micropost.id)&.delete
+    end
   end
 
   private

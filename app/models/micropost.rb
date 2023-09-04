@@ -4,7 +4,12 @@ class Micropost < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_users, class_name: "User",
                          through: :likes,
-                         dependent: :destroy
+                         source: :user,
+                         dependent: :destroy do
+                           def with_count
+                             select(:count, arel_table[Arel.star])
+                           end
+                         end
 
   belongs_to :user
   has_one_attached :image do |attachable|
