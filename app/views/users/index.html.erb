@@ -4,9 +4,9 @@
   <%= text_field_tag 'search_users' %>
   <%= submit_tag "search", :name => nil, class: "serched_users" %>
 <% end %>
-
 <div id="searched-users-list">
-  <% unless @users.blank? %>
+<%= link_to "#{user.name}#{user.nickname}", user, target: "_self" %>
+  <% if @users.any? %>
     <%= will_paginate %>
       <ul class="users">
       <%= render @users %>
