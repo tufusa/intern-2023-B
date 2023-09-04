@@ -15,7 +15,7 @@
         <%= @user.introduce %>
       </p>
     </section>
-    <%=link_to "自分のlike一覧へ",  mylikes_user_path(@user)%>
+    <%=link_to t( :go_my_like_post),  mylikes_user_path(@user)%>
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>

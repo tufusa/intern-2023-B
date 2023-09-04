@@ -55,7 +55,7 @@ en:
 
   latest_microposts_by_following: "Latest microposts by following accounts"
   my_like_post: "My like Micropost"
-  to_my_like_post: "go my like micropost"
+  go_my_like_post: "go my like micropost"
   no_latest_microposts: "No latest microposts."
   no_mylikes_microposts: "No my like micropost."
 
