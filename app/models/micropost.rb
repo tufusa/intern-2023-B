@@ -1,6 +1,16 @@
 class Micropost < ApplicationRecord
   include MicropostsHelper
 
+  has_many :likes, dependent: :destroy
+  has_many :liked_users, class_name: "User",
+                         through: :likes,
+                         source: :user,
+                         dependent: :destroy do
+                           def with_count
+                             select(:count, arel_table[Arel.star])
+                           end
+                         end
+
   belongs_to :user
   has_one_attached :image do |attachable|
     attachable.variant :display, resize_to_limit: [300, 300]
