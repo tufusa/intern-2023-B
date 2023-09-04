@@ -59,9 +59,8 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow', status: :unprocessable_entity
   end
-  def mylike
-    @microposts = @user.microposts.paginate(page: params[:page])
-
+  def mylikes
+    @microposts = @user.liked_microposts.paginate(page: params[:page])
   end
   private
     def set_user 
