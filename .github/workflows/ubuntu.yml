@@ -8,19 +8,15 @@ jobs:
     timeout-minutes: 10
     steps:
     - uses: actions/checkout@v3
-    - uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 3.0.6
-        bundler-cache: true
     - name: sqlite3 install
       run: |
         sudo apt install libsqlite3-dev
         gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
         dpkg -L libsqlite3-dev
-    - name: Install dependencies
-      run: |
-        gem install bundler --no-document
-        bundle install --without production
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0.6
+        bundler-cache: true
     - name: database setup
       run: |
         mv config/database.local.yml config/database.yml
