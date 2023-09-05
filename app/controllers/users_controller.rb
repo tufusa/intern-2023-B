@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @microposts = @user.microposts.paginate(page: params[:page])
     @fixed_item = @user.get_fixed_micropost
     @hidden_button = false
+    @show_liked_count = false
   end
 
   def new

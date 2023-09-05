@@ -196,6 +196,31 @@ aside {
   }
 }
 
+// 個別ユーザのいいね数を表示するためのcss//////////////////
+.profile {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  .liked_counts{
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $gray-lighter;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+  }
+  .liked_letter{
+    font-size: 300%;
+  }
+  strong {
+    display: block;
+  }
+}
+
+//////////////////////////////////////
+
 .user_avatars {
   overflow: auto;
   margin-top: 10px;
