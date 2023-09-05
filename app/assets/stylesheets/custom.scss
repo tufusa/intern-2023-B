@@ -317,10 +317,24 @@ input {
       padding: 5px 0;
     }
   }
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    .separator {
+      color: $gray-light;
+    }
+  }
+  .like {
+    display: flex;
+    align-items: center;
+    min-width: 5rem;
+    .icon {
+      font-size: 2rem;
+    }
+  }
   .timestamp {
     color: $gray-light;
-    display: block;
-    margin-left: 60px;
   }
   .gravatar {
     float: left;

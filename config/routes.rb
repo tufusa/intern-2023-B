@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :following, :followers
+      get :mylikes
     end
   end
   resources :account_activations, only: [:edit]
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
     member do                                                               #micropostsというパスにfixedメソッドを作るイメージ？
       post :fix
       get  :like_users
+      post :like
     end
   end
   resources :relationships,       only: [:create, :destroy]

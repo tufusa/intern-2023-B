@@ -54,7 +54,11 @@ en:
   introduction: "Introduction"
 
   latest_microposts_by_following: "Latest microposts by following accounts"
+  my_like_post: "Liked micropost"
+  go_my_like_post: "Liked microposts"
   no_latest_microposts: "No latest microposts."
+  no_mylikes_microposts: "No liked microposts."
+
 
   like_stm: "Like"
   like_users: "Like Users"
