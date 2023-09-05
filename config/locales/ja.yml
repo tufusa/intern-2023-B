@@ -54,7 +54,10 @@ ja:
   introduction: 自己紹介
 
   latest_microposts_by_following: "フォローしている人の最新の投稿"
+  my_like_post: "LikeしたMicropost"
+  go_my_like_post: "LikeしたMicropost一覧へ"
   no_latest_microposts: "最新のMicropostはありません。"
+  no_mylikes_microposts: "LikeしたMicropostはありません。"
 
   # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/ja.yml
   activerecord:
