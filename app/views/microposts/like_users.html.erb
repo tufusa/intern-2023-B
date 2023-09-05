@@ -7,8 +7,12 @@
      </ol>
   </aside>
   <div class="col-md-8">
-   <ul class="users">
-      <%= render @users %>    
+  <% if @users.any? %>
+    <ul class="users">
+      <%= render @users %> 
     </ul>
+  <% else %>
+    <h4><%= t :none_like_users %></h4>
+  <% end%>
   </div>
 </div>

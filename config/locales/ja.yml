@@ -58,6 +58,7 @@ ja:
 
   like_stm: "いいねしたユーザ一覧"
   like_users: "いいねした人"
+  none_like_users: "いいねした人はまだいません"
   like_page: "いいねされました"
 
   # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/ja.yml

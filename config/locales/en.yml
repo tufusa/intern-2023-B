@@ -58,6 +58,7 @@ en:
 
   like_stm: "Like"
   like_users: "Like Users"
+  none_like_users: "No one has liked it yet"
   like_page: "Liked Users"
 
 # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/en-US.yml
