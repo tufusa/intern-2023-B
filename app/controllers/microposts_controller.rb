@@ -37,7 +37,6 @@ class MicropostsController < ApplicationController
   def like_users
     @micropost = Micropost.find_by(id: params[:id])
     @hidden_button = true
-    @show_liked_count = true
     @users = @micropost.liked_users.with_count
   end
 

@@ -197,26 +197,23 @@ aside {
 }
 
 // 個別ユーザのいいね数を表示するためのcss//////////////////
-.profile {
-  overflow: auto;
-  margin-top: 0;
-  padding: 0;
-  .liked_counts{
-    float: left;
-    padding: 0 10px;
-    border-left: 1px solid $gray-lighter;
-    color: gray;
-    &:first-child {
-      padding-left: 0;
-      border: 0;
+.liked_users {
+  .user-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .liked_counts{
+      margin-right: 2rem;
+      
+      text-align: right;
+      white-space: nowrap;
+      font-size: 3rem;
+      color: #ea1179;
+      flex: 1
     }
-  }
-  .liked_letter{
-    font-size: 300%;
-    color: #ea1179
-  }
-  strong {
-    display: block;
+    li {
+      flex: 8;
+    }
   }
 }
 
