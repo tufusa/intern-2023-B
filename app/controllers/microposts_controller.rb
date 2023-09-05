@@ -34,6 +34,12 @@ class MicropostsController < ApplicationController
     redirect_to request.fullpath, status: :see_other
   end
 
+  def like_users
+    @micropost = Micropost.find_by(id: params[:id])
+    @hidden_button = true
+    @users = @micropost.liked_users.with_count
+  end
+
   def like
     @micropost = Micropost.find_by(id: params[:id])
     current_user.like @micropost

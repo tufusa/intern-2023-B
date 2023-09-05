@@ -4,7 +4,6 @@
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to t(:delete_user), user, data: { "turbo-method": :delete,
       turbo_confirm: "You sure?" } %>
-      
   <% end %>
   <% @user = user %>
   <%= render 'shared/stats' %>

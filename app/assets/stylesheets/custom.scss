@@ -196,6 +196,29 @@ aside {
   }
 }
 
+// 個別ユーザのいいね数を表示するためのcss//////////////////
+.liked_users {
+  .user-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .liked_counts{
+      margin-right: 2rem;
+      
+      text-align: right;
+      white-space: nowrap;
+      font-size: 3rem;
+      color: #ea1179;
+      flex: 1
+    }
+    li {
+      flex: 8;
+    }
+  }
+}
+
+//////////////////////////////////////
+
 .user_avatars {
   overflow: auto;
   margin-top: 10px;
@@ -335,4 +358,8 @@ span.image {
 .nickname {
   display: inline;
   color: crimson
+}
+
+.hidden_tag{
+  display: none;
 }

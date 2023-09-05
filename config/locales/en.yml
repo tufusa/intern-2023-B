@@ -59,6 +59,9 @@ en:
   no_latest_microposts: "No latest microposts."
   no_mylikes_microposts: "No liked microposts."
 
+  liked_users: "Liked Users"
+  none_like_users: "No one has liked it yet"
+  liked: "Liked"
 
 # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/en-US.yml
   activerecord:

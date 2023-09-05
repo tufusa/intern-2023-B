@@ -59,6 +59,10 @@ ja:
   no_latest_microposts: "最新のMicropostはありません。"
   no_mylikes_microposts: "LikeしたMicropostはありません。"
 
+  liked_users: "Likeした人"
+  none_like_users: "Likeした人はまだいません"
+  liked: "Likeされました"
+
   # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/ja.yml
   activerecord:
     errors:
