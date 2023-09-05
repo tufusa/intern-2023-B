@@ -4,6 +4,9 @@
     <%= link_to image_tag(icon, alt: 'Like button', width: '20px'),
                 like_micropost_path(micropost.id),
                 data: { 'turbo_method': :post } %>
-    <%= micropost.likes.sum &:count %>
+    <%= link_to micropost.likes.sum(&:count),
+                like_users_micropost_path(micropost.id),
+                data: { "turbo-method": :get },
+                target: "_self" %>
   </span>
 <% end %>
