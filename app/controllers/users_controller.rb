@@ -7,9 +7,14 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   
   def index
+    search_term = params[:search_users]
+    if search_term
+      User.sanitize_sql_like(search_term)
+    end
+    search_term = "%#{search_term}%"
     @users = User
-              .where('name LIKE ?', "%#{params[:search_users]}%")
-              .or(User.where('email LIKE ?', "%#{params[:search_users]}%"))
+              .where('name LIKE ?', search_term)
+              .or(User.where('email LIKE ?', search_term))
               .paginate(page: params[:page])
   end
 

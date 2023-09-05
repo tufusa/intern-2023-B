@@ -1,11 +1,10 @@
-<% provide(:title, 'All users') %>
+<% provide(:title, t(:all_users)) %>
 <h1><%= t :all_users %></h1>
 <%= form_tag( users_path, :method => 'get' , data: {turbo_frame: "searched-users-list"}) do %>
   <%= text_field_tag 'search_users' %>
   <%= submit_tag "search", :name => nil, class: "serched_users" %>
 <% end %>
-<div id="searched-users-list">
-<%= link_to "#{user.name}#{user.nickname}", user, target: "_self" %>
+<%= turbo_frame_tag "searched-users-list" do %>
   <% if @users.any? %>
     <%= will_paginate %>
       <ul class="users">
@@ -15,7 +14,7 @@
     <% else %>
       <p>検索条件と十分に一致する結果が見つかりません</p>    
   <% end%>
-</div>
+<% end %>
   
   
 
