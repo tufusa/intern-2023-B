@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy, :fix]
-  before_action :correct_user,   only: [:destroy, :fix]
+  before_action :logged_in_user, only: [:create, :destroy, :fix, :like]
+  before_action :correct_user,   only: [:destroy, :fix, :like]
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -32,6 +32,19 @@ class MicropostsController < ApplicationController
     @fixed_item = current_user.get_fixed_micropost
     flash[:success] = "Micropost fixed"
     redirect_to request.fullpath, status: :see_other
+  end
+
+  def like
+    current_user.like @micropost
+
+    render turbo_stream: turbo_stream.replace(
+      "like-button-#{@micropost.id}",
+      partial: 'microposts/like',
+      locals: {
+        micropost: @micropost,
+        liked: current_user.like_count(@micropost).positive?
+      }
+    )
   end
 
   private
