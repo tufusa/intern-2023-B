@@ -1,23 +1,22 @@
 <li>
-  <%= gravatar_for user, size: 50 %>
+<% @user = user %>
   <div class="profile">
-    <div class="liked_counts">
-      <%= link_to "#{user.name}#{user.nickname}", user %>
-      <% if current_user.admin? && !current_user?(user) %>
-        | <%= link_to t(:delete_user), user, data: { "turbo-method": :delete,
-          turbo_confirm: "You sure?" } %>
-
-      <% end %>
-      <% @user = user %>
-      <%= render 'shared/stats' %>
-      <p style = "overflow-wrap: break-word;">
-        <%= user.introduce %>
-      </p>
-    </div>
     <div class="liked_counts liked_letter">
       <%if @show_liked_count %>
         <%= @user.count %>
       <% end %>
+    </div>
+    <div class="liked_counts">
+      <%= gravatar_for user, size: 50 %>
+      <%= link_to "#{user.name}#{user.nickname}", user %>
+      <% if current_user.admin? && !current_user?(user) %>
+        | <%= link_to t(:delete_user), user, data: { "turbo-method": :delete,
+          turbo_confirm: "You sure?" } %>
+      <% end %>
+      <%= render 'shared/stats' %>
+      <p style = "overflow-wrap: break-word;">
+        <%= user.introduce %>
+      </p>
     </div>
   </div>
 </li>
