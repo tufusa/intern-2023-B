@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "like-button-#{micropost.id}" do %>
+  <span class="like">
+    <% icon = "like-#{liked ? 'filled' : 'outlined'}.svg" %>
+    <%= link_to image_tag(icon, alt: 'Like button', width: '20px'),
+                like_micropost_path(micropost.id),
+                data: { 'turbo_method': :post } %>
+    <%= micropost.likes.sum &:count %>
+  </span>
+<% end %>

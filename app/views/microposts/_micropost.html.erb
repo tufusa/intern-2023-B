@@ -16,15 +16,21 @@
       <%= image_tag micropost.image.variant(:display) %>
     <% end %>
   </span>
-  <span class="timestamp">
-    <%= time_ago_in_words(micropost.created_at) %>
-    <% if current_user?(micropost.user) %>
-      <%= link_to t(:delete_post), micropost, data: { "turbo-method": :delete,
-                                               turbo_confirm: "You sure?" } %>
-      <% if !micropost.is_fixed %>
-      <%= link_to t(:fix_post), fix_micropost_path(micropost.id), data: { "turbo-method": :post,          #deleteなど固定されていないメソッドを追加した場合は、パス(_path)を書く必要あり
-                                               turbo_confirm: "You sure?" } %>
+  <span class="controls">
+    <%= render 'microposts/like',
+                micropost: micropost,
+                liked: current_user.like_count(micropost) > 0 %>
+    <span class="separator">│</span>
+    <span class="timestamp">
+      <%= time_ago_in_words(micropost.created_at) %>
+      <% if current_user?(micropost.user) %>
+        <%= link_to t(:delete_post), micropost, data: { "turbo-method": :delete,
+                                                 turbo_confirm: "You sure?" } %>
+        <% if !micropost.is_fixed %>
+        <%= link_to t(:fix_post), fix_micropost_path(micropost.id), data: { "turbo-method": :post,          #deleteなど固定されていないメソッドを追加した場合は、パス(_path)を書く必要あり
+                                                 turbo_confirm: "You sure?" } %>
+        <% end %>
       <% end %>
-    <% end %>
+    </span>
   </span>
 </li>
