@@ -54,10 +54,10 @@ en:
   introduction: "Introduction"
 
   latest_microposts_by_following: "Latest microposts by following accounts"
-  my_like_post: "My like Micropost"
-  go_my_like_post: "go my like micropost"
+  my_like_post: "Liked micropost"
+  go_my_like_post: "Liked microposts"
   no_latest_microposts: "No latest microposts."
-  no_mylikes_microposts: "No my like micropost."
+  no_mylikes_microposts: "No liked microposts."
 
 
 # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/en-US.yml
