@@ -43,6 +43,7 @@ ja:
   change_gravatar: 変更
 
   all_users: 全てのユーザー
+  no_search_users: 検索条件と十分に一致する結果が見つかりません
 
   will_paginate:
     previous_label: "← 前"

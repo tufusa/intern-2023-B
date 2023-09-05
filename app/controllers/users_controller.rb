@@ -16,6 +16,8 @@ class UsersController < ApplicationController
               .where('name LIKE ?', search_term)
               .or(User.where('email LIKE ?', search_term))
               .paginate(page: params[:page])
+    
+    @locale = params[:locale]
   end
 
   def show

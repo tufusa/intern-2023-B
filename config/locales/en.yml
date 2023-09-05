@@ -43,6 +43,7 @@ en:
   change_gravatar: change
 
   all_users: "All users"
+  no_search_users: "No results found"
 
   will_paginate:
     previous_label: "← Prev"
