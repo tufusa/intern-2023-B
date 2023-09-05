@@ -22,7 +22,22 @@ class ActiveSupport::TestCase
   end
 end
 
+module AddQueryParametersToPath
+  # Railsが自動生成したパスメソッドをクエリパラメータを含むようにオーバーライドする
+  def add_query_parameters_to(*path_methods)
+    path_with_query_parameters = lambda do |*values|
+      "#{super(*values)}?locale=#{I18n.locale}"
+    end
+
+    path_methods.each { define_method _1, path_with_query_parameters }
+  end
+end
+
 class ActionDispatch::IntegrationTest
+  extend AddQueryParametersToPath
+
+  path_url_methods = %w[root login logout user help about contact users].flat_map { %I[#{_1}_path #{_1}_url] }
+  add_query_parameters_to *path_url_methods
 
   # テストユーザーとしてログインする
   def log_in_as(user, password: 'password', remember_me: '1')

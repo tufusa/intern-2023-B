@@ -1,15 +1,16 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
-                                        :following, :followers]
+                                        :following, :followers,:mylikes]
+  before_action :set_user,       only: [:mylikes, :followers, :following, 
+                                        :show, :destroy, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-
+  
   def index
     @users = User.paginate(page: params[:page])
   end
 
   def show
-    @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
     @fixed_item = @user.get_fixed_micropost
   end
@@ -42,27 +43,29 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    @user.destroy
     flash[:success] = "User deleted"
     redirect_to users_url, status: :see_other
   end
 
   def following
-    @title = "フォロー"
-    @user  = User.find(params[:id])
+    @title = I18n.t :following
     @users = @user.following.paginate(page: params[:page])
     render 'show_follow', status: :unprocessable_entity
   end
 
   def followers
-    @title = "フォロワー"
-    @user  = User.find(params[:id])
+    @title = I18n.t :followers
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow', status: :unprocessable_entity
   end
-
+  def mylikes
+    @microposts = @user.liked_microposts.paginate(page: params[:page])
+  end
   private
-
+    def set_user 
+      @user = User.find(params[:id])
+    end
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation, :nickname, :introduce)
@@ -72,7 +75,6 @@ class UsersController < ApplicationController
 
     # 正しいユーザーかどうか確認
     def correct_user
-      @user = User.find(params[:id])
       redirect_to(root_url, status: :see_other) unless current_user?(@user)
     end
 

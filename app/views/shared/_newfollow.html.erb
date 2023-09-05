@@ -6,6 +6,6 @@
   <%=  @newpost_items%>
 <% else %>
 <ol class="microposts">
-  <p style="color:silver">フォローしているひとの最新の投稿はありません。</p>
+  <p style="color:silver"><%= t :no_latest_microposts %></p>
 </ol>
 <% end %>

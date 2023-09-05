@@ -10,11 +10,12 @@
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
-      <p>自己紹介</p>
+      <p><%= t :introduction %></p>
       <p style = "overflow-wrap: break-word;">
         <%= @user.introduce %>
       </p>
     </section>
+    <%=link_to t( :go_my_like_post),  mylikes_user_path(@user)%>
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>

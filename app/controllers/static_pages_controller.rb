@@ -24,4 +24,7 @@ class StaticPagesController < ApplicationController
               .includes(:user, image_attachment: :blob).limit(Settings.newpost.limitnum)
     @micropost  = current_user.microposts.build
   end
+
+  
+
 end

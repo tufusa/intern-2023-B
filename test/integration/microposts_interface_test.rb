@@ -20,7 +20,7 @@ class MicropostsInterfaceTest < MicropostsInterface
       post microposts_path, params: { micropost: { content: "" } }
     end
     assert_select 'div#error_explanation'
-    assert_select 'a[href=?]', '/?page=2'  # 正しいページネーションリンク
+    assert_select 'a[href=?]', "/?locale=#{I18n.locale}&page=2"  # 正しいページネーションリンク
   end
 
   test "should create a micropost on valid submission" do
@@ -35,7 +35,7 @@ class MicropostsInterfaceTest < MicropostsInterface
 
   test "should have micropost delete links on own profile page" do
     get user_path(@user)
-    assert_select 'a', text: '削除'
+    assert_select 'a', text: I18n.t(:delete_post)
   end
 
   test "should be able to delete own micropost" do

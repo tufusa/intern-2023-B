@@ -5,7 +5,7 @@ class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(name: "Example User", email: "user@example.com",
                      password: "foobar", password_confirmation: "foobar",
-                     nickname: "@nickname")
+                     nickname: "@nickname").tap(&:save)
   end
 
   test "should be valid" do
@@ -142,5 +142,31 @@ class UserTest < ActiveSupport::TestCase
     archer.microposts.each do |post_unfollowed|
       assert_not michael.feed.include?(post_unfollowed)
     end
+  end
+
+  test 'user can like a micropost' do
+    micropost = @user.microposts.build(content: 'Lorem ipsum').tap(&:save)
+    michael = users(:michael)
+    michael.like micropost
+    assert_equal michael.like_count(micropost), 1
+  end
+
+  test 'user can like a micropost any number of times' do
+    micropost = @user.microposts.build(content: 'Lorem ipsum').tap(&:save)
+    michael = users(:michael)
+    like_time = 100
+    like_time.times { michael.like micropost }
+    assert_equal michael.like_count(micropost), like_time
+  end
+
+  test 'user can delete like from a micropost' do
+    micropost = @user.microposts.build(content: 'Lorem ipsum').tap(&:save)
+    michael = users(:michael)
+    like_time = 10
+    like_time.times { michael.like micropost }
+    assert_equal michael.like_count(micropost), like_time
+
+    michael.delete_like micropost
+    assert_equal michael.like_count(micropost), 0
   end
 end

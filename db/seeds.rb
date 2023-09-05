@@ -5,19 +5,21 @@ User.create!(name:  "Example User",
   password_confirmation: "foobar",
   admin:     true,
   activated: true,
-  activated_at: Time.zone.now)
+  activated_at: Time.zone.now,
+  nickname: "@example")
 
 # 追加のユーザーをまとめて生成する
 99.times do |n|
-name  = Faker::Name.name
-email = "example-#{n+1}@railstutorial.org"
-password = "password"
-User.create!(name:  name,
-    email: email,
-    password:              password,
-    password_confirmation: password,
-    activated: true,
-    activated_at: Time.zone.now)
+  name  = Faker::Name.name
+  email = "example-#{n + 1}@railstutorial.org"
+  password = "password"
+  User.create!(name:  name,
+      email: email,
+      password:              password,
+      password_confirmation: password,
+      activated: true,
+      activated_at: Time.zone.now,
+      nickname: "@example_#{n + 1}")
 end
 
 # ユーザーの一部を対象にマイクロポストを生成する
