@@ -31,7 +31,12 @@ class MicropostsController < ApplicationController
     end
     @fixed_item = current_user.get_fixed_micropost
     flash[:success] = 'Micropost fixed'
-    redirect_to request.fullpath, status: :see_other
+
+    if request.referrer.nil?
+      redirect_to root_url, status: :see_other
+    else
+      redirect_to request.referrer, status: :see_other
+    end
   end
 
   def like_users
