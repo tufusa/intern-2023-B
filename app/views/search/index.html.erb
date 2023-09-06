@@ -1,9 +1,12 @@
 <% provide :title, t(:explore_microposts) %>
 <h1><%= t :explore_microposts %></h1>
 
-<%= form_with url: search_path, method: :get, data: { turbo_frame: 'found-microposts' } do |f|  %>
+<%= form_with url: search_path,
+              method: :get,
+              data: { turbo_frame: 'found-microposts' },
+              class: 'explore_microposts_form' do |f| %>
   <%= f.text_field 'search-words', placeholder: t(:keywords) %>
-  <%= f.submit 'search' %>
+  <%= f.submit '➡' %>
 <% end %>
 
 <%= turbo_frame_tag 'found-microposts' do %>

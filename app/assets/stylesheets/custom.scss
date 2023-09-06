@@ -376,3 +376,29 @@ span.image {
 	color: #fff;
 	background: #27acd9;
 }
+
+.explore_microposts_form {
+  display: flex;
+  flex-direction: row;
+  line-height: 4rem;
+
+  input {
+    display: inline;
+    padding: 0;
+    margin: 0;
+  }
+
+  input[name="search-words"] {
+    flex: 1;
+    padding-left: 1rem;
+  }
+
+  input[name="commit"] {
+    box-sizing: border-box;
+    width: 4rem;
+
+    border: none;
+    background-color: skyblue;
+    color: white;
+  }
+}
