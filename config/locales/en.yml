@@ -64,6 +64,10 @@ en:
   none_like_users: "No one has liked it yet"
   liked: "Liked"
 
+  explore: Explore
+  explore_microposts: "Explore microposts"
+  keywords: "keywords"
+
 # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/en-US.yml
   activerecord:
     errors:

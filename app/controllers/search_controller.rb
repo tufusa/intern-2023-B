@@ -4,6 +4,7 @@ class SearchController < ApplicationController
   def index
     words = params[:"search-words"]&.split(/\p{white-space}/)&.map { Micropost.sanitize_sql_like _1 } || []
     @microposts = search_microposts(words).paginate(page: params[:page])
+    @locale = params[:locale]
   end
 
   def search_microposts(words)

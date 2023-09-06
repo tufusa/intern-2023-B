@@ -64,6 +64,10 @@ ja:
   none_like_users: "Likeした人はまだいません"
   liked: "Likeされました"
 
+  explore: 探す
+  explore_microposts: Micropostを探す
+  keywords: キーワードを入力
+
   # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/ja.yml
   activerecord:
     errors:
