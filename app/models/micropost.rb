@@ -34,7 +34,7 @@ class Micropost < ApplicationRecord
       value = fragment[:value]
       is_link = fragment[:is_link]
       to = fragment[:to]
-      is_link ? %(<a href="#{to}">#{value}</a>) : value
+      is_link ? %(<a target="_self" href="#{to}">#{value}</a>) : value
     end.join
   end
 end
