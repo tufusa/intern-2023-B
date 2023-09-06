@@ -22,6 +22,7 @@ gem "config",                     "4.2.1"
 group :development, :test do
   gem "sqlite3", "1.4.2"
   gem "debug",   "1.5.0", platforms: %i[ mri mingw x64_mingw ]
+  gem 'sqlite3_ar_regexp', '~> 2.2'
 end
 
 group :development do
