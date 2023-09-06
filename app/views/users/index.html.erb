@@ -1,10 +1,21 @@
 <% provide(:title, t(:all_users)) %>
 <h1><%= t :all_users %></h1>
 
+  <%= form_with(model: @user,  url: users_path, method: :get) do |f| %>
+    <%= f.label :birthplace %>
+    <%= f.select :search, options_for_select(User.prefectures), {}%>
+  
+    <%= f.submit t(:submit_profile), class: "btn btn-primary" %>
+  <% end %>
+  <%= form_with(model: @user,  url: users_path, method: :get) do |f| %>
+    <%= f.submit t(:submit_profile), class: "btn btn-primary" %>
+  <% end %>
 <%= will_paginate %>
 
 <ul class="users">
-  <%= render @users %>
+  <% if @searched.present? %>
+    <%= render @searched %>
+  <% end %>
 </ul>
 
 <%= will_paginate %>

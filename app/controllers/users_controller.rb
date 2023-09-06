@@ -8,6 +8,12 @@ class UsersController < ApplicationController
   
   def index
     @users = User.paginate(page: params[:page])
+    @searchplace = params[:search]
+    if @searchplace==nil
+      @searched = User.paginate(page: params[:page])
+    else
+      @searched = User.where(birthplace: @searchplace).paginate(page: params[:page])
+    end
   end
 
   def show
@@ -62,6 +68,8 @@ class UsersController < ApplicationController
   end
   def mylikes
     @microposts = @user.liked_microposts.paginate(page: params[:page])
+  end
+  def siborikomi
   end
   private
     def set_user 
