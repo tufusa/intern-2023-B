@@ -7,7 +7,17 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   
   def index
-    @users = User.paginate(page: params[:page])
+    search_term = params[:search_users]
+    if search_term
+      User.sanitize_sql_like(search_term)
+    end
+    search_term = "%#{search_term}%"
+    @users = User
+              .where('name LIKE ?', search_term)
+              .or(User.where('email LIKE ?', search_term))
+              .paginate(page: params[:page])
+    
+    @locale = params[:locale]
   end
 
   def show

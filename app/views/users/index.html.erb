@@ -1,10 +1,22 @@
-<% provide(:title, t(:all_users)) %>
+<% provide(:title, :all_users) %>
 <h1><%= t :all_users %></h1>
+<%= form_tag( users_path, :method => 'get' , data: {turbo_frame: "searched-users-list"}) do %>
+  <%= text_field_tag 'search_users' %>
+  <%= hidden_field_tag :locale, @locale %>
+  <%= submit_tag "search", :name => nil, class: "serched_users" %>
+<% end %>
 
-<%= will_paginate %>
+<%= turbo_frame_tag "searched-users-list" do%>
+  <% unless @users.blank? %>
+    <%= will_paginate %>
+      <ul class="users">
+      <%= render @users %>
+      </ul>
+    <%= will_paginate %>
+  <% else %>
+    <p><%= t :no_search_users %></p>
+  <% end%>
+<% end %>
+  
+  
 
-<ul class="users">
-  <%= render @users %>
-</ul>
-
-<%= will_paginate %>
