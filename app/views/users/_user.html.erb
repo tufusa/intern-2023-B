@@ -9,6 +9,9 @@
   <% @user = user %>
   <%= render 'shared/stats' %>
   <p style = "overflow-wrap: break-word;">
-    <%= user.introduce %>
+    自己紹介：<%= user.introduce %>
+  </p>
+  <p style = "overflow-wrap: break-word;">
+    出身地：<%= user.birthplace %>
   </p>
 </li>

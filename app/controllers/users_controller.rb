@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    Rails.logger.debug "debug; #{user_params}"
     if @user.update(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
@@ -66,11 +67,12 @@ class UsersController < ApplicationController
     def set_user 
       @user = User.find(params[:id])
     end
+
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation, :nickname, :introduce)
+                                   :password_confirmation, :nickname, :introduce, :birthplace)
     end
-
+  
     # beforeフィルタ
 
     # 正しいユーザーかどうか確認
