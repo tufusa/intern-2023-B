@@ -1,0 +1,17 @@
+<% provide :title, 'Explore microposts' %>
+<h1>Explore microposts</h1>
+
+<%= form_tag search_path, method: :get, data: { turbo_frame: 'found-microposts' } do %>
+  <%= text_field_tag 'search-words' %>
+  <%= submit_tag 'search' %>
+<% end %>
+
+<%= turbo_frame_tag 'found-microposts' do %>
+  <% if @microposts.any? %>
+    <%= will_paginate @microposts %>
+    <ul class="microposts">
+      <%= render @microposts %>
+    </ul>
+    <%= will_paginate @microposts %>
+  <% end %>
+<% end %>
