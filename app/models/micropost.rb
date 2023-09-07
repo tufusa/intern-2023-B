@@ -23,6 +23,13 @@ class Micropost < ApplicationRecord
                       size: { less_than: 5.megabytes,
                               message: 'should be less than 5MB' }
 
+  validate :validate_number_of_files
+  FILE_NUMBER_LIMIT = 4
+  def validate_number_of_files
+    return if image.length <= FILE_NUMBER_LIMIT
+    errors.add(:image,  "に添付できる画像は#{FILE_NUMBER_LIMIT}件までです")
+  end
+
   def content_splitted
     content.split(LINK_EXP).map do |string|
       { value: string, is_link: link?(string), to: generate_link(string) }
