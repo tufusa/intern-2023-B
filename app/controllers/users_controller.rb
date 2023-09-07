@@ -82,8 +82,7 @@ class UsersController < ApplicationController
   def mylikes
     @microposts = @user.liked_microposts.paginate(page: params[:page])
   end
-  def siborikomi
-  end
+  
   private
     def set_user 
       @user = User.find(params[:id])
