@@ -2,13 +2,13 @@
 <h1><%= t :all_users %></h1>
 
   <%= form_with(model: @user,  url: users_path, method: :get) do |f| %>
-    <%= f.label :birthplace %>
-    <%= f.select :search, options_for_select(User.prefectures), {}%>
+    <%= f.label :birthplace %> <br>
+    <%= f.select :search, options_for_select(User.prefectures), {} , class: 'pdownbox'%><br>
   
-    <%= f.submit t(:submit_profile), class: "btn btn-primary" %>
+    <%= f.submit t(:narrow_down), class: " selectbutton" %>
   <% end %>
   <%= form_with(model: @user,  url: users_path, method: :get) do |f| %>
-    <%= f.submit t(:submit_profile), class: "btn btn-primary" %>
+    <%= f.submit t(:Not_narrow_down) ,class: "cancelbutton" %>
   <% end %>
 <%= will_paginate %>
 

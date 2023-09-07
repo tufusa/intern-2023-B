@@ -58,7 +58,9 @@ ja:
   go_my_like_post: "LikeしたMicropost一覧へ"
   no_latest_microposts: "最新のMicropostはありません。"
   no_mylikes_microposts: "LikeしたMicropostはありません。"
-
+  birthplace: "出身地"
+  narrow_down: "出身地で絞り込む"
+  Not_narrow_down: "絞り込みなし"
   # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/ja.yml
   activerecord:
     errors:

@@ -58,7 +58,9 @@ en:
   go_my_like_post: "Liked microposts"
   no_latest_microposts: "No latest microposts."
   no_mylikes_microposts: "No liked microposts."
-
+  birthplace: "birthplace"
+  narrow_down: "Narrow down Microposts"
+  Not_narrow_down: "Not narrow down"
 
 # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/en-US.yml
   activerecord:

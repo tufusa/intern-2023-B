@@ -24,8 +24,8 @@
       <%= f.label :introduce %>
       <%= f.text_area :introduce,  class: 'form-control' %>
 
-      <%= f.label :birthplace %>
-      <%= f.select :birthplace, options_for_select(User.prefectures), {}%>
+      <%= f.label :birthplace %><br>
+      <%= f.select :birthplace, options_for_select(User.prefectures), {}, class: 'pdownbox' %>
      
       <%= f.submit t(:submit_profile), class: "btn btn-primary" %>
     <% end %>
