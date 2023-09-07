@@ -68,6 +68,11 @@ ja:
   explore_microposts: Micropostを探す
   keywords: キーワードを入力
 
+  recently_posted: 新しい順
+  least_recently_posted: 古い順
+  most_likes: Likeの多い順
+  fewest_likes: Likeの少ない順
+
   # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/ja.yml
   activerecord:
     errors:

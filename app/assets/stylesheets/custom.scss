@@ -377,7 +377,7 @@ span.image {
 	background: #27acd9;
 }
 
-.explore_microposts_form {
+.explore_microposts_form .bar {
   display: flex;
   flex-direction: row;
   line-height: 4rem;
@@ -401,4 +401,14 @@ span.image {
     background-color: #27acd9;
     color: white;
   }
+}
+
+.explore_microposts_form #sort_by {
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, .2);
 }

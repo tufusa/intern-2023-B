@@ -6,8 +6,11 @@
               data: { turbo_frame: 'found-microposts' },
               class: 'explore_microposts_form',
               id: 'explore_microposts_form' do |f| %>
-  <%= f.text_field 'keywords', placeholder: t(:keywords), value: @keywords %>
-  <%= f.submit '➡' %>
+  <div class="bar">
+    <%= f.text_field 'keywords', placeholder: t(:keywords), value: @keywords %>
+    <%= f.submit '➡' %>
+  </div>
+  <%= f.select 'sort_by', options_for_select(@sort_options) %>
 <% end %>
 
 <%= turbo_frame_tag 'found-microposts' do %>

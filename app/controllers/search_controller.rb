@@ -9,12 +9,21 @@ class SearchController < ApplicationController
 
   def index
     @keywords = params[:keywords]
+    @sort_options = [
+      [I18n.t(:recently_posted), :recently_posted],
+      [I18n.t(:least_recently_posted), :least_recently_posted],
+      [I18n.t(:most_likes), :most_likes],
+      [I18n.t(:fewest_likes), :fewest_likes]
+    ]
+
+    sort_by = params[:sort_by]&.to_sym || @sort_options[0][1]
     words = @keywords&.split(/\p{white-space}/)&.map { Micropost.sanitize_sql_like _1 } || []
-    @microposts = search_microposts(words).paginate(page: params[:page])
+
+    @microposts = search_microposts(words, sort_by).paginate(page: params[:page])
     @locale = params[:locale]
   end
 
-  def search_microposts(words)
+  def search_microposts(words, sort_by)
     tags,        words = words.partition { _1 =~ /\A#.+\Z/ }
     minus_words, words = words.partition { _1 =~ /\A-.+\Z/ }
     froms,       words = words.partition { _1 =~ /\Afrom:.+\Z/ }
@@ -23,6 +32,9 @@ class SearchController < ApplicationController
     froms.each { _1.delete_prefix! 'from:' }
 
     microposts = Micropost.includes(:user)
+                          .select('microposts.*, SUM(likes.count) AS like_count')
+                          .left_joins(:likes)
+                          .group(:id)
 
     # 普通のAND検索
     microposts = words.inject(microposts) do |posts, word|
@@ -42,6 +54,18 @@ class SearchController < ApplicationController
     # fromのOR検索
     microposts = microposts.where('user.nickname': froms) if froms.any?
 
-    microposts
+    # ソート
+    case sort_by
+    when :recently_posted
+      microposts.reorder created_at: :desc
+    when :least_recently_posted
+      microposts.reorder created_at: :asc
+    when :most_likes
+      microposts.reorder like_count: :desc, created_at: :desc
+    when :fewest_likes
+      microposts.reorder like_count: :asc, created_at: :desc
+    else
+      microposts
+    end
   end
 end
