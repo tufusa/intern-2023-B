@@ -1,24 +1,25 @@
 .pdownbox{
-    width: 120px;
+    min-width: 120px;
+    width: fit-content;
     height: 3em;
-    border-radius:5px;
+    border-radius: 5px;
 }
+
 .cancelbutton {
-    //margin:px 20px 0px;
-    width: 120px;
+    min-width: 120px;
+    width: fit-content;
     padding: 10px;
-    border-radius:5px;
-    font-family:  arial; 
-   
+    border-radius: 5px;
+    font-family: arial;
 }
 
 .selectbutton {
     margin-right: 10px;
     width: 200px;
     padding: 10px;
-    border-radius:5px;
-    font-family:  arial; 
-    float:left;
+    border-radius: 5px;
+    font-family: arial;
+    float: left;
     background: rgb(51, 122, 183);
     color: white;
 }
