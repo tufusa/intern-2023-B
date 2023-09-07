@@ -8,6 +8,9 @@
   <% @user = user %>
   <%= render 'shared/stats' %>
   <p style = "overflow-wrap: break-word;">
-    <%= user.introduce %>
+    <%=  t(:introduction) %>：<%= user.introduce %>
+  </p>
+  <p style = "overflow-wrap: break-word;">
+    <%=  t(:birthplace) %>：<%= user.birthplace %>
   </p>
 </li>

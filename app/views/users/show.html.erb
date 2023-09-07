@@ -14,6 +14,10 @@
       <p style = "overflow-wrap: break-word;">
         <%= @user.introduce %>
       </p>
+      <p >
+      <p><%= t(:birthplace) %></p>
+        <%= @user.birthplace %>
+      </p>
     </section>
     <%=link_to t( :go_my_like_post),  mylikes_user_path(@user)%>
   </aside>

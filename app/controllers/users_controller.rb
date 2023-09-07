@@ -7,16 +7,14 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   
   def index
-    search_term = params[:search_users]
-    if search_term
-      User.sanitize_sql_like(search_term)
-    end
-    search_term = "%#{search_term}%"
-    @users = User
-              .where('name LIKE ?', search_term)
-              .or(User.where('email LIKE ?', search_term))
-              .paginate(page: params[:page])
-    
+    searchplace = params[:search_place]
+    search_term = params[:search_users] || ''
+    @users = User.where('name LIKE ?', "%#{User.sanitize_sql_like(search_term)}%")
+                 .or(User.where('email LIKE ?', search_term))
+
+    @users = @users.where(birthplace: searchplace)
+
+    @users = @users.paginate(page: params[:page])
     @locale = params[:locale]
   end
 
@@ -46,6 +44,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    Rails.logger.debug "debug; #{user_params}"
     if @user.update(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
@@ -74,15 +73,17 @@ class UsersController < ApplicationController
   def mylikes
     @microposts = @user.liked_microposts.paginate(page: params[:page])
   end
+  
   private
     def set_user 
       @user = User.find(params[:id])
     end
+
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation, :nickname, :introduce)
+                                   :password_confirmation, :nickname, :introduce, :birthplace)
     end
-
+  
     # beforeフィルタ
 
     # 正しいユーザーかどうか確認
