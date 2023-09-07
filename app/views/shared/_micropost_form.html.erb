@@ -5,6 +5,6 @@
   </div>
   <%= f.submit t(:post_micropost), class: "btn btn-primary" %>
   <span class="image">
-    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", multiple: true %>
   </span>
 <% end %>

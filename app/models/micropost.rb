@@ -12,7 +12,7 @@ class Micropost < ApplicationRecord
                          end
 
   belongs_to :user
-  has_one_attached :image do |attachable|
+  has_many_attached :image do |attachable|
     attachable.variant :display, resize_to_limit: [300, 300]
   end
   default_scope -> { order(created_at: :desc) }

@@ -13,7 +13,9 @@
       %><% end %><%#
     %><% end %>
     <% if micropost.image.attached? %>
-      <%= image_tag micropost.image.variant(:display) %>
+    <% micropost.image.each do |img| %>
+      <%= image_tag img.variant(:display) %>
+    <% end %>
     <% end %>
   </span>
   <div <%if @hidden_button %> class ="hidden_tag"<% end %> > 
