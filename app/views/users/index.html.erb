@@ -1,21 +1,40 @@
-<% provide(:title, t(:all_users)) %>
+<% provide(:title, :all_users) %>
 <h1><%= t :all_users %></h1>
+<%= form_tag( users_path, :method => 'get' , data: {turbo_frame: "searched-users-list"}) do %>
+  <%= text_field_tag 'search_users' %>
+  <%= hidden_field_tag :locale, @locale %>
+  <%= submit_tag "search", :name => nil, class: "serched_users" %>
+<% end %>
 
   <%= form_with(model: @user,  url: users_path, method: :get) do |f| %>
     <%= f.label :birthplace %> <br>
     <%= f.select :search, options_for_select(User.prefectures), {} , class: 'pdownbox'%><br>
-  
+    <%= hidden_field_tag :locale, @locale %>
     <%= f.submit t(:narrow_down), class: " selectbutton" %>
   <% end %>
   <%= form_with(model: @user,  url: users_path, method: :get) do |f| %>
     <%= f.submit t(:Not_narrow_down) ,class: "cancelbutton" %>
+    <%= hidden_field_tag :locale, @locale %>
   <% end %>
-<%= will_paginate %>
 
-<ul class="users">
+
   <% if @searched.present? %>
+      <%= will_paginate %>
     <%= render @searched %>
+  <% elsif @searchplace.present? %>
+      <p>この地域のユーザはありません。</p>
+  <% else %>
+    <%= turbo_frame_tag "searched-users-list" do%>
+      <% unless @users.blank? %>
+        <%= will_paginate %>
+          <ul class="users">
+          <%= render @users %>
+          </ul>
+        <%= will_paginate %>
+      <% else %>
+        <p><%= t :no_search_users %></p>
+      <% end%>
+    <% end %>
   <% end %>
-</ul>
+  
 
-<%= will_paginate %>

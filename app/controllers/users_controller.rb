@@ -10,15 +10,28 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page])
     @searchplace = params[:search]
     if @searchplace==nil
-      @searched = User.paginate(page: params[:page])
+      @searched = nil
     else
       @searched = User.where(birthplace: @searchplace).paginate(page: params[:page])
     end
+    search_term = params[:search_users]
+    if search_term
+      User.sanitize_sql_like(search_term)
+    end
+    search_term = "%#{search_term}%"
+    @users = User
+              .where('name LIKE ?', search_term)
+              .or(User.where('email LIKE ?', search_term))
+              .paginate(page: params[:page])
+    
+    @locale = params[:locale]
   end
 
   def show
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @user = User.find(params[:id])
+    @microposts = @user.microposts.without_fixed.paginate(page: params[:page])
     @fixed_item = @user.get_fixed_micropost
+    @hidden_button = false
   end
 
   def new

@@ -43,6 +43,7 @@ en:
   change_gravatar: change
 
   all_users: "All users"
+  no_search_users: "No results found"
 
   will_paginate:
     previous_label: "← Prev"
@@ -61,6 +62,11 @@ en:
   birthplace: "birthplace"
   narrow_down: "Narrow down Microposts"
   Not_narrow_down: "Not narrow down"
+
+  liked_users: "Liked Users"
+  none_like_users: "No one has liked it yet"
+  liked: "Liked"
+
 
 # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/en-US.yml
   activerecord:

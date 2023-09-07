@@ -1,0 +1,24 @@
+<% provide(:title, t(:liked_users)) %>
+<h1><%= t :liked %></h1>
+<div class="liked_users row">
+  <span class="col-md-4 microposts">
+    <%= render @micropost %>
+  </span>
+  <div class="col-md-8">
+    <% if @users.any? %>
+      <ul class="users">
+        <% @users.each do |user| %>
+          <span class="user-row">
+            <span class="liked_counts">
+              <%= image_tag('like-filled.svg', width: '20px') %><%#
+              %><%= user.count %>
+            </span>
+            <%= render user %>
+          </span>
+        <% end %>
+      </ul>
+    <% else %>
+      <h4><%= t :none_like_users %></h4>
+    <% end%>
+  </div>
+</div>
