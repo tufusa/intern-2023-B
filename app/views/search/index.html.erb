@@ -4,7 +4,8 @@
 <%= form_with url: search_path,
               method: :get,
               data: { turbo_frame: 'found-microposts' },
-              class: 'explore_microposts_form' do |f| %>
+              class: 'explore_microposts_form',
+              id: 'explore_microposts_form' do |f| %>
   <%= f.text_field 'keywords', placeholder: t(:keywords), value: @keywords %>
   <%= f.submit '➡' %>
 <% end %>
