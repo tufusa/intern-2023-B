@@ -303,9 +303,6 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
-    sqlite3_ar_regexp (2.2.0)
-      activerecord (>= 3.2)
-      sqlite3
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
     thor (1.2.1)
@@ -365,7 +362,6 @@ DEPENDENCIES
   selenium-webdriver (= 4.2.0)
   sprockets-rails (= 3.4.2)
   sqlite3 (= 1.4.2)
-  sqlite3_ar_regexp (~> 2.2)
   stimulus-rails (= 1.0.4)
   turbo-rails (= 1.1.1)
   web-console (= 4.2.0)
