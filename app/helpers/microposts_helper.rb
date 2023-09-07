@@ -1,24 +1,24 @@
 module MicropostsHelper
   URL_EXP = %r{(https?://[a-z0-9-]+(?:\.[a-z]+)+(?:/[a-zA-Z0-9-]*)*[a-zA-Z0-9\-_?=&#]*)}.freeze
   NICKNAME_EXP = /(@\w{,127})/.freeze
+  HASHTAG_EXP = /(?<=\A|\p{white-space})(#\p{^white-space}+)(?=\p{white-space}|\Z)/.freeze
 
-  LINK_EXP = Regexp.union(URL_EXP, NICKNAME_EXP).freeze
+  LINK_EXP = Regexp.union(URL_EXP, NICKNAME_EXP, HASHTAG_EXP).freeze
 
   # stringがリンクにすべき文字列であればtrueを返す
   def link?(string)
-    return false unless LINK_EXP.match? string
-    return false if NICKNAME_EXP.match?(string) && !get_user_in_following_followers(string)
-
-    true
+    url?(string) || hashtag?(string) || (nickname?(string) && get_user_in_following_followers(string))
   end
 
-  # stringのリンク(link_toのリンク先オブジェクト)を返す リンクにすべき文字列でなければnilを返す
-  def generate_link(string)
+  # stringのリンク先オブジェクトをview_contextを引数に取って生成するラムダを返す リンクにすべき文字列でなければnilを返す
+  def link_generator(string)
     case string
     when ->(s) { url? s }
-      string
+      ->(_context) { string }
     when ->(s) { nickname? s }
-      get_user_in_following_followers(string)
+      ->(_context) { get_user_in_following_followers(string) }
+    when ->(s) { hashtag? s }
+      ->(context) { context.search_path(keywords: string) }
     end
   end
 
@@ -30,6 +30,10 @@ module MicropostsHelper
   # stringがnicknameであればtrueを返す
   def nickname?(string)
     NICKNAME_EXP.match? string
+  end
+
+  def hashtag?(string)
+    HASHTAG_EXP.match? string
   end
 
   # フォロー, フォロワー内でnicknameが一致した場合はそのユーザを, 一致しなければnilを返す

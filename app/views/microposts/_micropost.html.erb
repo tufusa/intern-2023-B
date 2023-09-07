@@ -7,7 +7,7 @@
     <% micropost.content_splitted.each do |fragment| %><%#
       %><% case %><%#
       %><% when fragment[:is_link] %><%#
-        %><%= link_to fragment[:value], fragment[:to], target: '_self' %><%#
+        %><%= link_to fragment[:value], fragment[:to].call(self), target: '_self' %><%#
       %><% else %><%#
         %><%= fragment[:value] %><%#
       %><% end %><%#
