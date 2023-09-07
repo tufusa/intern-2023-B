@@ -17,8 +17,6 @@ document.addEventListener("turbo:load", function() {
       image_upload.value = "";
     }
 
-    alert(image_files.length);
-
     let button = document.getElementById("able_post")
     if( image_files.length > 4 ){
       button.disabled = true;
