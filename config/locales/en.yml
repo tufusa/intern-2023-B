@@ -59,6 +59,9 @@ en:
   go_my_like_post: "Liked microposts"
   no_latest_microposts: "No latest microposts."
   no_mylikes_microposts: "No liked microposts."
+  birthplace: "birthplace"
+  narrow_down: "Narrow down Microposts"
+  Not_narrow_down: "Not narrow down"
 
   liked_users: "Liked Users"
   none_like_users: "No one has liked it yet"

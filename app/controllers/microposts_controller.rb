@@ -4,7 +4,7 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
-    @micropost.image.attach(params[:micropost][:image])
+    @micropost.image.attach(params[:micropost][image: []])
     if @micropost.save
       flash[:success] = 'Micropost created!'
       redirect_to root_url
@@ -15,7 +15,11 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
-    @micropost.destroy
+    Micropost.transaction do
+      #論理削除をするときは消してください↓
+      @micropost.image.detach
+      @micropost.destroy
+    end
     flash[:success] = 'Micropost deleted'
     if request.referrer.nil?
       redirect_to root_url, status: :see_other
@@ -62,7 +66,7 @@ class MicropostsController < ApplicationController
   private
 
   def micropost_params
-    params.require(:micropost).permit(:content, :image)
+    params.require(:micropost).permit(:content, image: [])
   end
 
   def correct_user

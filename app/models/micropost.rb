@@ -12,7 +12,7 @@ class Micropost < ApplicationRecord
                          end
 
   belongs_to :user
-  has_one_attached :image do |attachable|
+  has_many_attached :image do |attachable|
     attachable.variant :display, resize_to_limit: [300, 300]
   end
   default_scope -> { order(created_at: :desc) }
@@ -22,6 +22,13 @@ class Micropost < ApplicationRecord
                                       message: 'must be a valid image format' },
                       size: { less_than: 5.megabytes,
                               message: 'should be less than 5MB' }
+
+  validate :validate_number_of_files 
+  FILE_NUMBER_LIMIT = 4
+  def validate_number_of_files
+    return if image.length <= FILE_NUMBER_LIMIT
+    errors.add(:image, "Image selection is limited to #{FILE_NUMBER_LIMIT} images")
+  end
 
   def content_splitted
     content.split(LINK_EXP).map do |string|

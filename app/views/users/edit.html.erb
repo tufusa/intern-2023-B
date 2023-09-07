@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @user) do |f| %>
+    <%= form_with(model: @user, data: { turbo_method: :patch }) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :name %>
@@ -24,6 +24,9 @@
       <%= f.label :introduce %>
       <%= f.text_area :introduce,  class: 'form-control' %>
 
+      <%= f.label :birthplace %><br>
+      <%= f.select :birthplace, options_for_select(User.prefectures), {}, class: 'pdownbox' %>
+     
       <%= f.submit t(:submit_profile), class: "btn btn-primary" %>
     <% end %>
 

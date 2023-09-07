@@ -3,8 +3,8 @@
   <div class="field">
     <%= f.text_area :content, placeholder: t(:compose_new_micropost) %>
   </div>
-  <%= f.submit t(:post_micropost), class: "btn btn-primary" %>
+  <%= f.submit t(:post_micropost), class: "btn btn-primary", id: "able_post" %>
   <span class="image">
-    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", multiple: true %>
   </span>
 <% end %>
