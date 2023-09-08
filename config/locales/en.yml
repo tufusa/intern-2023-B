@@ -67,6 +67,15 @@ en:
   none_like_users: "No one has liked it yet"
   liked: "Liked"
 
+  explore: Explore
+  explore_microposts: "Explore microposts"
+  keywords: "keywords"
+
+  recently_posted: "Recently posted"
+  least_recently_posted: "Least recently posted"
+  most_likes: "Most likes"
+  fewest_likes: "Fewest likes"
+  
 
 # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/en-US.yml
   activerecord:

@@ -32,16 +32,16 @@ class Micropost < ApplicationRecord
 
   def content_splitted
     content.split(LINK_EXP).map do |string|
-      { value: string, is_link: link?(string), to: generate_link(string) }
+      { value: string, is_link: link?(string), to: link_generator(string) }
     end
   end
 
-  def content_html
+  def content_html(context)
     content_splitted.map do |fragment|
       value = fragment[:value]
       is_link = fragment[:is_link]
       to = fragment[:to]
-      is_link ? %(<a href="#{to}">#{value}</a>) : value
+      is_link ? context.link_to(value, to.call(context), target: '_self') : value
     end.join
   end
 end

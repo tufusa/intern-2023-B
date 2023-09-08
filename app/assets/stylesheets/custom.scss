@@ -376,3 +376,39 @@ span.image {
 	color: #fff;
 	background: #27acd9;
 }
+
+.explore_microposts_form .bar {
+  display: flex;
+  flex-direction: row;
+  line-height: 4rem;
+
+  input {
+    display: inline;
+    padding: 0;
+    margin: 0;
+  }
+
+  input[name="keywords"] {
+    flex: 1;
+    padding-left: 1rem;
+  }
+
+  input[name="commit"] {
+    box-sizing: border-box;
+    width: 4rem;
+
+    border: none;
+    background-color: #27acd9;
+    color: white;
+  }
+}
+
+.explore_microposts_form #sort_by {
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, .2);
+}

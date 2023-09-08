@@ -7,12 +7,13 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   
   def index
-    searchplace = params[:search_place]
+    search_place = params[:search_place] || ''
     search_term = params[:search_users] || ''
-    @users = User.where('name LIKE ?', "%#{User.sanitize_sql_like(search_term)}%")
-                 .or(User.where('email LIKE ?', search_term))
+    search_term_pattern = "%#{User.sanitize_sql_like(search_term)}%"
+    @users = User.where('name LIKE ?', search_term_pattern)
+                 .or(User.where('email LIKE ?', search_term_pattern))
 
-    @users = @users.where(birthplace: searchplace)
+    @users = @users.where(birthplace: search_place) unless search_place.empty?
 
     @users = @users.paginate(page: params[:page])
     @locale = params[:locale]

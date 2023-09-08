@@ -7,7 +7,7 @@
 
   <%= f.label :birthplace %>
   <br>
-  <%= f.select :search_place, options_for_select(User.prefectures), {} , class: 'pdownbox'%><br>
+  <%= f.select :search_place, options_for_select(User.prefectures), { include_blank: true } , class: 'pdownbox'%><br>
   <%= f.submit t(:narrow_down), class: "selectbutton" %>
   <%= f.submit t(:Not_narrow_down) ,class: "cancelbutton" %>
 <% end %>

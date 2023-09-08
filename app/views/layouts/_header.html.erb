@@ -19,6 +19,7 @@
         <% if logged_in? %>
           <li><%= link_to t(:users), users_path %></li>
           <li><%= link_to t(:latest), newpost_path %></li>
+          <li><%= link_to t(:explore), search_path %></li>
           <li class="dropdown">
             <a href="#" id="account" class="dropdown-toggle">
               <%= t :account %> <b class="caret"></b>
