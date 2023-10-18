@@ -36,6 +36,10 @@ class UsersController < ApplicationController
       # @user.send_activation_email
       # flash[:info] = "Please check your email to activate your account."
       @user.activate
+      if @user.authenticate(user_params[:password])
+        reset_session
+        log_in @user
+      end
       redirect_to root_url
     else
       render 'new', status: :unprocessable_entity
@@ -58,6 +62,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     flash[:success] = "User deleted"
+    p({ current: current_user })
     redirect_to users_url, status: :see_other
   end
 
