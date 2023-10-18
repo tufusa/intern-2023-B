@@ -41,9 +41,14 @@ class SearchController < ApplicationController
       posts.where('content LIKE :word', word: "%#{word}%")
     end
 
+    regexp = Rails.env.production? ? '~' : 'REGEXP'
     # タグ 完全一致
     microposts = tags.inject(microposts) do |posts, tag|
-      posts.where('content REGEXP :tag', tag: "(\\A|#{SPACES.join('|')})##{tag}(#{SPACES.join('|')}|\\Z)")
+      posts.where(
+        'content :regexp :tag',
+        regexp: regexp,
+        tag: "(\\A|#{SPACES.join('|')})##{tag}(#{SPACES.join('|')}|\\Z)"
+      )
     end
 
     # マイナス検索
