@@ -1,5 +1,5 @@
 module MicropostsHelper
-  URL_EXP = %r{(https?://[a-z0-9-]+(?:\.[a-z]+)+(?:/[a-zA-Z0-9-]*)*[a-zA-Z0-9\-_?=&#]*)}.freeze
+  URL_EXP = %r{(https?://[a-z0-9-]+(?:\.[a-zA-Z0-9-]+)+(?:/[a-zA-Z0-9-]*)*[a-zA-Z0-9\-_?=&#]*)}.freeze
   NICKNAME_EXP = /(@\w{,127})/.freeze
   HASHTAG_EXP = /(?<=\A|\p{white-space})(#\p{^white-space}+)(?=\p{white-space}|\Z)/.freeze
 
