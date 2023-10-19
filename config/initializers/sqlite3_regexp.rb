@@ -14,7 +14,7 @@ class ActiveRecord::ConnectionAdapters::SQLite3Adapter
 end
 
 if ENV['DB_MODE'] == 'production'
-  require 'activerecord/lib/active_record/connection_adapters/postgresql_adapter'
+  require 'activerecord/connection_adapters/postgresql_adapter'
 
   class ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
     alias old_initialize initialize
