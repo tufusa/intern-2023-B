@@ -29,7 +29,10 @@ class SearchController < ApplicationController
     froms,       words = words.partition { _1 =~ /\Afrom:.+\Z/ }
     tags.each { _1.delete_prefix! '#' }
     minus_words.each { _1.delete_prefix! '-' }
-    froms.each { _1.delete_prefix! 'from:' }
+    froms.each do
+      _1.delete_prefix! 'from:'
+      _1.gsub! '\\', ''
+    end
 
     microposts = Micropost.includes(:user)
                           .select('microposts.*, SUM(likes.count) AS like_count')
@@ -41,7 +44,7 @@ class SearchController < ApplicationController
       posts.where('content LIKE :word', word: "%#{word}%")
     end
 
-    regexp = Rails.env.production? ? '~' : 'REGEXP'
+    regexp = ENV['DB_MODE'] == 'production' ? '~' : 'REGEXP'
     # タグ 完全一致
     microposts = tags.inject(microposts) do |posts, tag|
       posts.where(
