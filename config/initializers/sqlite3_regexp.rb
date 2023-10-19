@@ -13,7 +13,7 @@ class ActiveRecord::ConnectionAdapters::SQLite3Adapter
   end
 end
 
-if ENV['DB_NAME'] == 'production'
+if ENV['DB_MODE'] == 'production'
   require 'activerecord/lib/active_record/connection_adapters/postgresql_adapter'
 
   class ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
