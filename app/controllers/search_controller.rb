@@ -45,7 +45,7 @@ class SearchController < ApplicationController
     # タグ 完全一致
     microposts = tags.inject(microposts) do |posts, tag|
       posts.where(
-        'content :regexp :tag',
+        "content #{regexp} :tag",
         regexp: regexp,
         tag: "(\\A|#{SPACES.join('|')})##{tag}(#{SPACES.join('|')}|\\Z)"
       )
